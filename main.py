@@ -21,6 +21,7 @@ if args.tipo and args.category and args.format:
     if a.access_dataset_category_finanzas(args.tipo,args.category,args.format):
         a.query_search()
         a.select_and_download()
+        pathCSV=a.endProcess()
 else:
     sw=0
     cont=0
@@ -34,7 +35,7 @@ else:
             if a.access_dataset_category_finanzas(type_data,category_data,format_data):
                 a.query_search()
                 a.select_and_download()
-                a.endProcess()
+                pathCSV=a.endProcess()
                 sw=1
             else:
                 print("----- Volver a ingresar datos ------")
@@ -42,5 +43,4 @@ else:
             print("Se requiere de todos los campos")
         cont+=1
 
-
-separate_by_region("pcm_donaciones.csv","C:/Users/Mhord/Documents/GitHub/TestBackendDeveloper/download",{"correlativo":[0]})
+separate_by_region("pcm_donaciones.csv",str(pathCSV),{"correlativo":[0]})
